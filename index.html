@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        
+        <title>B Fern</title>
+        <link type="text/css" rel="stylesheet" href="css/reset.css" />
+        <link type="text/css" rel="stylesheet" href="css/style.css" />
+
+        <script type="text/javascript">
+            // When the window has loaded, DOM is ready. init our main app
+            function init() {
+                mainInit();
+            }
+            window.onload = init;
+        </script>
+
+    </head>
+    <body>
+        <div id="container">
+            <canvas id="main" style="width: 800px; height: 800px; position: absolute; left: 0px; top: 0px;"></canvas>
+        </div>
+
+        <script type="text/javascript" src="js/utils/utils.js"></script>
+
+        <!-- game -->
+        <script src="js/setup/bfern.js"></script>
+
+        <!-- renderer -->
+        <script src="js/render/Renderer2D.js"></script>
+
+        <!-- main -->
+        <script src="js/game/BFernGame.js"></script>
+
+        <!-- main -->
+        <script src="js/setup/main.js"></script>
+
+    </body>
+</html>
