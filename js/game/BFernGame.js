@@ -137,7 +137,7 @@ rb.game.BFernGame.prototype.update = function(dt) {
 
     if (this.t > this.maxIterations)
     {
-        console.log("Done");
+        // console.log("Done");
         return;
     }
 
