@@ -31,6 +31,7 @@ rb.game.BFernGame = function(dpi) {
 };
 
 rb.game.BFernGame.prototype.plotFern = function() {
+    /*
     while (this.t < this.maxIterations)
     {
         let r = Math.random();
@@ -64,6 +65,7 @@ rb.game.BFernGame.prototype.plotFern = function() {
         this.y = this.yn;
         this.t++;
     }
+    */
 }
 /**
  * draw all pixels on screen white
@@ -109,17 +111,17 @@ rb.game.BFernGame.prototype.update = function(dt) {
         }
         else if (r < 0.86)
         {
-            this.xn = (0.85 * this.x)+ (0.04 * this.y);
+            this.xn = (0.85 * this.x) + (0.04 * this.y);
             this.yn = (-0.04 * this.x) + (0.85 * this.y) + 1.6;
         }
         else if (r < 0.93)
         {
-            this.xn = (0.2 * this.x)+ (-0.26 * this.y);
+            this.xn = (0.2 * this.x) + (-0.26 * this.y);
             this.yn = (0.23 * this.x) + (0.22 * this.y) + 1.6;
         }
         else
         {
-            this.xn = (-0.15 * this.x)+ (0.28 * this.y);
+            this.xn = (-0.15 * this.x) + (0.28 * this.y);
             this.yn = (0.26 * this.x) + (0.24 * this.y) + 0.44;
         }
 
@@ -132,13 +134,14 @@ rb.game.BFernGame.prototype.update = function(dt) {
         this.t++;
     }
     */
-    /*
+
     if (this.t > this.maxIterations)
     {
         console.log("Done");
         return;
     }
 
+    
     let r = Math.random();
 
     if (r < 0.01)
@@ -148,28 +151,27 @@ rb.game.BFernGame.prototype.update = function(dt) {
     }
     else if (r < 0.86)
     {
-        this.xn = (0.85 * this.x)+ (0.04 * this.y);
+        this.xn = (0.85 * this.x) + (0.04 * this.y);
         this.yn = (-0.04 * this.x) + (0.85 * this.y) + 1.6;
     }
     else if (r < 0.93)
     {
-        this.xn = (0.2 * this.x)+ (-0.26 * this.y);
+        this.xn = (0.2 * this.x) + (-0.26 * this.y);
         this.yn = (0.23 * this.x) + (0.22 * this.y) + 1.6;
     }
     else
     {
-        this.xn = (-0.15 * this.x)+ (0.28 * this.y);
+        this.xn = (-0.15 * this.x) + (0.28 * this.y);
         this.yn = (0.26 * this.x) + (0.24 * this.y) + 0.44;
     }
 
-    console.log("Iteration: " + this.t + " xn: " + this.xn + " yn: " + this.yn);
+    //console.log("Iteration: " + this.t + " xn: " + this.xn + " yn: " + this.yn);
 
     this.renderer.plotPointNormalized(this.xn, this.yn);
 
     this.x = this.xn;
     this.y = this.yn;
     this.t++;
-    */
 };
 
 /**
