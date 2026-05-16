@@ -14,14 +14,15 @@ function mainInit() {
     rb.gDevicePixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1;
     rb.gCanvasElement.width = rb.gCanvasElement.clientWidth * rb.gDevicePixelRatio;
     rb.gCanvasElement.height = rb.gCanvasElement.clientHeight * rb.gDevicePixelRatio;
+    rb.gFraemTimeElement = document.getElementById('frametime');
     console.log('devicePixelRatio: ' + rb.gDevicePixelRatio);
 
     rb.gPrevTimestamp = 0;
     rb.gDelta = 0;
 
-    // creat our game
+    // create our game
     rb.gBFernGame = new rb.game.BFernGame(rb.gDevicePixelRatio);
-    rb.gBFernGame.plotFern();
+    rb.gBFernGame.generatePoints();
 
     var supportsTouch = 'ontouchstart' in window;
     var useMouse = !supportsTouch;
@@ -37,6 +38,7 @@ function mainInit() {
 function mainLoop(timestamp) {
     // calculate our delta
     rb.gDelta = Math.max(0.0, timestamp - rb.gPrevTimestamp);
+    rb.gFraemTimeElement.innerHTML = rb.gDelta;
     rb.gPrevTimestamp = timestamp;
 
     // update our game

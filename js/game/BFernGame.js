@@ -21,57 +21,53 @@ rb.game.BFernGame = function(dpi) {
 
     // create our renderer
     this.renderer = new rb.render.Renderer2D(this.canvasElement, dpi);
-
-    this.x = 0.0
-    this.y = 0.0
-    this.t = 0.0
-    this.xn = 0.0
-    this.yn = 0.0
-    this.maxIterations = 30000;
+    this.maxIterations = 12500;
+    this.points = [];
 };
 
-rb.game.BFernGame.prototype.plotFern = function() {
-    /*
-    while (this.t < this.maxIterations)
+rb.game.BFernGame.prototype.generatePoints = function() {
+    this.points = [];
+
+    let t = 0;
+    let x = 0;
+    let y = 0;
+    let xn = 0;
+    let yn = 0;
+
+    while(t < this.maxIterations)
     {
         let r = Math.random();
-        let color = "white";
-
+   
         if (r < 0.01)
         {
-            this.xn = 0.0;
-            this.yn = 0.16 * this.y;
-            color = "white";
+            xn = 0.0;
+            yn = 0.16 * y;
         }
         else if (r < 0.86)
         {
-            this.xn = (0.85 * this.x) + (0.04 * this.y);
-            this.yn = (-0.04 * this.x) + (0.85 * this.y) + 1.6;
-            color = "green";
+            xn = (0.85 * x) + (0.04 * y);
+            yn = (-0.04 * x) + (0.85 * y) + 1.6;
         }
         else if (r < 0.93)
         {
-            this.xn = (0.2 * this.x) + (-0.26 * this.y);
-            this.yn = (0.23 * this.x) + (0.22 * this.y) + 1.6;
-            color = "red"
+            xn = (0.2 * x) + (-0.26 * y);
+            yn = (0.23 * x) + (0.22 * y) + 1.6;
         }
         else
         {
-            this.xn = (-0.15 * this.x) + (0.28 * this.y);
-            this.yn = (0.26 * this.x) + (0.24 * this.y) + 0.44;
-            color = "blue";
+            xn = (-0.15 * x) + (0.28 * y);
+            yn = (0.26 * x) + (0.24 * y) + 0.44;
         }
 
-        //console.log("Iteration: " + this.t + " xn: " + this.xn + " yn: " + this.yn);
+        this.points.push({ x: xn, y: yn});
+        this.renderer.plotPointNormalized(xn, yn, "green");
 
-        this.renderer.plotPointNormalized(this.xn, this.yn, "green");
-
-        this.x = this.xn;
-        this.y = this.yn;
-        this.t++;
+        x = xn;
+        y = yn;
+        t++;
     }
-    */
 }
+
 /**
  * draw all pixels on screen white
 x = 0.0
@@ -103,56 +99,24 @@ while t < maximum iterations:
  * @param {number} dt
  */
 rb.game.BFernGame.prototype.update = function(dt) {
-    
-    if (this.t > this.maxIterations)
-    {
-        // console.log("Done");
-        return;
-    }
-
-    let r = Math.random();
-    let color = "white";
-
-    if (r < 0.01)
-    {
-        this.xn = 0.0;
-        this.yn = 0.16 * this.y;
-        color = "white";
-    }
-    else if (r < 0.86)
-    {
-        this.xn = (0.85 * this.x) + (0.04 * this.y);
-        this.yn = (-0.04 * this.x) + (0.85 * this.y) + 1.6;
-        color = "green";
-    }
-    else if (r < 0.93)
-    {
-        this.xn = (0.2 * this.x) + (-0.26 * this.y);
-        this.yn = (0.23 * this.x) + (0.22 * this.y) + 1.6;
-        color = "red"
-    }
-    else
-    {
-        this.xn = (-0.15 * this.x) + (0.28 * this.y);
-        this.yn = (0.26 * this.x) + (0.24 * this.y) + 0.44;
-        color = "blue";
-    }
-
-    //console.log("Iteration: " + this.t + " xn: " + this.xn + " yn: " + this.yn);
-
-    this.renderer.plotPointNormalized(this.xn, this.yn, "green");
-
-    this.x = this.xn;
-    this.y = this.yn;
-    this.t++;
-    
 };
 
 /**
  * render call for our game
  */
 rb.game.BFernGame.prototype.render = function() {
-    this.renderer.render();
+    this.renderer.clearCanvas();
+    this.generatePoints();
+
+    
+    /*
+    for (let i = 0; i < this.points.length; i++)
+    {
+        const point = this.points[i];
+        this.renderer.plotPointNormalized(point.x, point.y, "green");
+    }
+    */
+    
 };
 
 /**
