@@ -7,8 +7,7 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         
         <title>B Fern</title>
-        <link type="text/css" rel="stylesheet" href="css/reset.css" />
-        <link type="text/css" rel="stylesheet" href="css/style.css" />
+        <link type="text/css" rel="stylesheet" href="css/normalize.css" />
 
         <script type="text/javascript">
             // When the window has loaded, DOM is ready. init our main app
@@ -20,11 +19,41 @@
 
     </head>
     <body>
-        <div id="container">
+
+        <div id="container" style="position: relative; left: 0px; top: 0px;">
             <canvas id="main" style="width: 500px; height: 800px; position: absolute; left: 0px; top: 0px;"></canvas>
         </div>
-        <div id="frametime">
+
+        <div id="controls" style="position: relative; left: 500px; top: 0px;">
+            <div>Control Area</div>
+            <div>&nbsp;</div>
+            <table>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>Frame Time (ms)</td>
+                    <td>&nbsp;</td>
+                    <td><div id="frametime">16</div></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>Accumulate</td>
+                    <td>&nbsp;</td>
+                    <td><input id="doAccumulate" type="checkbox" onchange="accOnOff();"/></td>
+                    <td>&nbsp;</td>
+                    <td><div id="doAccumulateText">Off</div></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>Density</td>
+                    <td>&nbsp;</td>
+                    <td><input id="density" type="range" min="0" max="30000" step="50" value="8000" oninput="sliderChangedGlobal('density');"/></td>
+                    <td>&nbsp;</td>
+                    <td><div id="densityText">8000</div></td>
+                </tr>
+    </table>
         </div>
+        
+        
 
         <script type="text/javascript" src="js/utils/utils.js"></script>
 
@@ -36,6 +65,7 @@
 
         <!-- main -->
         <script src="js/game/BFernGame.js"></script>
+        <script src="js/data/SlidingWindow.js"></script>
 
         <!-- main -->
         <script src="js/setup/main.js"></script>

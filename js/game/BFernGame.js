@@ -21,20 +21,17 @@ rb.game.BFernGame = function(dpi) {
 
     // create our renderer
     this.renderer = new rb.render.Renderer2D(this.canvasElement, dpi);
-    this.maxIterations = 12500;
-    this.points = [];
+    //this.maxIterations = 1000;
 };
 
 rb.game.BFernGame.prototype.generatePoints = function() {
-    this.points = [];
-
     let t = 0;
     let x = 0;
     let y = 0;
     let xn = 0;
     let yn = 0;
 
-    while(t < this.maxIterations)
+    while(t < rb.gFernGlobals["density"])
     {
         let r = Math.random();
    
@@ -59,9 +56,7 @@ rb.game.BFernGame.prototype.generatePoints = function() {
             yn = (0.26 * x) + (0.24 * y) + 0.44;
         }
 
-        this.points.push({ x: xn, y: yn});
         this.renderer.plotPointNormalized(xn, yn, "green");
-
         x = xn;
         y = yn;
         t++;
@@ -105,18 +100,12 @@ rb.game.BFernGame.prototype.update = function(dt) {
  * render call for our game
  */
 rb.game.BFernGame.prototype.render = function() {
-    this.renderer.clearCanvas();
-    this.generatePoints();
-
-    
-    /*
-    for (let i = 0; i < this.points.length; i++)
+    if (!rb.doAccumulate)
     {
-        const point = this.points[i];
-        this.renderer.plotPointNormalized(point.x, point.y, "green");
+        this.renderer.clearCanvas();
     }
-    */
     
+    this.generatePoints();
 };
 
 /**

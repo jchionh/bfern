@@ -29,15 +29,10 @@ rb.render.Renderer2D.prototype.render = function() {
  * plot a point
  */
 rb.render.Renderer2D.prototype.plotPointNormalized = function(x, y, color) {
-    //this.renderCtx.save();
-    //this.renderCtx.beginPath();
-    //this.renderCtx.arc((x * 100) + (this.width / 2.5), (y * 100) + (this.height / 20), 1 * this.dpi, 0, 2 * Math.PI);
-    //this.renderCtx.fillStyle = color;
-    //this.renderCtx.fill();
-    //this.renderCtx.restore();
+    const dim = 1 * this.dpi;
     this.renderCtx.save();
     this.renderCtx.fillStyle = color;
-    this.renderCtx.fillRect((x * 100) + (this.width / 2.5), (y * 100) + (this.height / 20), 1 * this.dpi, 1 * this.dpi);
+    this.renderCtx.fillRect((x * 100) + (this.width / 2.5), (y * 100) + (this.height / 20), dim, dim);
     this.renderCtx.restore();
 };
 
